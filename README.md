@@ -1,4 +1,5 @@
 personal-portage-overlay
 ========================
 
-my portage overlay playground
+My personal portage playground.
+Be aware that it is probably full of hazards ;-)
