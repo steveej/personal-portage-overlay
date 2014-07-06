@@ -1,0 +1,12 @@
+DEFINED_PHASES=install postinst prerm setup unpack
+DEPEND=virtual/httpd-php >=app-admin/webapp-config-1.50.15
+DESCRIPTION=Web-based media streamer, designed to stream mp3s (or any streaming capable media/video)
+HOMEPAGE=http://www.jinzora.org/
+IUSE=mssql mysql postgres sqlite vhosts
+KEYWORDS=~amd64 ~ppc ~x86
+LICENSE=GPL-2
+RDEPEND=virtual/httpd-cgi virtual/httpd-php >=app-admin/webapp-config-1.50.15
+SLOT=2.8.0
+SRC_URI=mirror://sourceforge/jinzora/jz280.tar.gz
+_eclasses_=depend.php	df169a364e191b840b695604097e3c21	eutils	76fc3c462065bb4ca959f939e6793f94	multilib	fac675dcccf94392371a6abee62d909f	phpconfutils	e108303831029e5b8a9d24b991b1d62a	toolchain-funcs	48b38a216afb92db6314d6c3187abea3	versionator	a8a3963967d6140be9a14b08bb8f047f	webapp	25b9b1696f5e698711f47d45c3d45e3e
+_md5_=818127e3c872898ed9dc382baa841cbf
