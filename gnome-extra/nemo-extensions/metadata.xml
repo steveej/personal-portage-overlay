@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer>
+		<email>code@stefanjunker.de</email>
+		<name>Stefan Junker</name>
+	</maintainer>
+	<longdescription>
+		Extensions for cinnamon's file-manager nemo"
+	</longdescription>
+	<upstream>
+		<bugs-to>https://github.com/anyc/steam-overlay</bugs-to>
+	</upstream>
+	<use>
+		<flag name='fileroller'>Enable the extension for managing archives with nemo using <pkg>app-arch/file-roller</pkg></flag>
+	</use>
+</pkgmetadata>
