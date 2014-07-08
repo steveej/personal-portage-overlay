@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<repositories version="1.0">
+	<repo priority="50" quality="experimental" status="unofficial">
+		<name>steveej</name>
+		<description>My personal portage playground</description>
+		<homepage>https://github.com/steveeJ</homepage>
+		<owner>
+			<email>code@stefanjunker.de</email>
+		</owner>
+		<source type="git">https://github.com/steveeJ/personal-portage-overlay.git</source>
+	</repo>
+</repositories> 
