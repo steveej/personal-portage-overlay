@@ -1,0 +1,5 @@
+# This file is deprecated as per GLEP 56 in favor of metadata.xml. Please add
+# your descriptions to your package's metadata.xml ONLY.
+# * generated automatically using egencache *
+
+gnome-extra/nemo-extensions:fileroller - Enable the extension for managing archives with nemo using app-arch/file-roller
