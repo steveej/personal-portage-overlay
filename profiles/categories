@@ -1,4 +1,7 @@
+app-admin
+app-emulation
 app-paludis
 gnome-extra
 net-misc
 www-apps
+x11-base
