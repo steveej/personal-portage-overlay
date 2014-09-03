@@ -2,11 +2,11 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-misc/tinc/tinc-1.0.16.ebuild,v 1.2
 
-EAPI="4"
+EAPI=5
 
 [[ ${PV} = *9999* ]] && EXTRA_ECLASS="git-2 autotools" || EXTRA_ECLASS=""
 
-inherit eutils ${EXTRA_ECLASS}
+inherit systemd eutils ${EXTRA_ECLASS}
 
 MY_P=${P/_/}
 
@@ -75,6 +75,7 @@ src_install() {
 	newinitd "${FILESDIR}"/tincd.lo.1 tincd.lo
 	doconfd "${FILESDIR}"/tinc.networks
 	newconfd "${FILESDIR}"/tincd.conf.1 tincd
+	systemd_newunit "${FILESDIR}"/tincd_at.service 'tincd@.service'
 }
 
 pkg_postinst() {
