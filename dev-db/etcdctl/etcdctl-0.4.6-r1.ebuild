@@ -1,12 +1,9 @@
 EAPI=5
-inherit git-2
 inherit user
 inherit systemd
 
 DESCRIPTION="Control utility for ectd"
 HOMEPAGE="https://github.com/coreos/etcdctl"
-SRC_URI=""
-
 SRC_URI="https://github.com/coreos/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="Apache"
