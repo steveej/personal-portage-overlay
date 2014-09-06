@@ -25,5 +25,5 @@ src_install() {
 	dobin "${S}"/bin/fleetd
 	dobin "${S}"/bin/fleetctl
 
-	systemd_dounit "${FILESDIR}"/${PN}.service
+	systemd_dounit "${FILESDIR}"/fleetd.service
 }
