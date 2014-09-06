@@ -7,7 +7,7 @@ DESCRIPTION="Control utility for ectd"
 HOMEPAGE="https://github.com/coreos/etcdctl"
 SRC_URI=""
 
-EGIT_REPO_URI="https://github.com/coreos/etcdctl.git"
+SRC_URI="https://github.com/coreos/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="Apache"
 SLOT="0"
