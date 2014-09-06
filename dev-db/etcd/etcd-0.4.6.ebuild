@@ -1,13 +1,10 @@
 EAPI=5
-inherit git-2
 inherit user
 inherit systemd
 
 DESCRIPTION="A highly-available key value store for shared configuration and service discovery"
 HOMEPAGE="https://github.com/coreos/etcd"
-SRC_URI=""
-
-EGIT_REPO_URI="https://github.com/coreos/etcd.git"
+SRC_URI="https://github.com/coreos/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="Apache"
 SLOT="0"
