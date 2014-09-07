@@ -2,13 +2,12 @@ EAPI=5
 
 inherit git-2 eutils ${EXTRA_ECLASS}
 
-DESCRIPTION="A simple certificate manager written in Go. Easy to use with limited capability."
+DESCRIPTION="A simple certificate manager written in Go. Easy to use with limited capability"
 HOMEPAGE="https://github.com/coreos/etcd-ca"
 
 EGIT_REPO_URI="https://github.com/coreos/etcd-ca.git"
 
-
-LICENSE="Apache"
+LICENSE="Apache-2.0""
 SLOT="0"
 KEYWORDS=""
 IUSE=""
