@@ -7,10 +7,11 @@ HOMEPAGE="https://github.com/coreos/etcd-ca"
 
 EGIT_REPO_URI="https://github.com/coreos/etcd-ca.git"
 
+EGIT_COMMIT="812f3626796be16d9db052720ce9c54f5a40bb26"
 
 LICENSE="Apache"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 DEPEND=">=dev-lang/go-1.2"
