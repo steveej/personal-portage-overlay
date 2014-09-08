@@ -1,3 +1,7 @@
+# Copyright 1999-2014 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: $
+
 EAPI=5
 
 inherit git-2 eutils ${EXTRA_ECLASS}
@@ -11,7 +15,7 @@ EGIT_COMMIT="812f3626796be16d9db052720ce9c54f5a40bb26"
 
 LICENSE="Apache-2.0"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 DEPEND=">=dev-lang/go-1.2"
@@ -23,5 +27,5 @@ src_compile() {
 }
 
 src_install() {
-	dobin ${S}/bin/${PN}
+	dobin "${S}"/bin/"${PN}"
 }
