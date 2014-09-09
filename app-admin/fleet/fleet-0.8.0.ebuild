@@ -13,34 +13,33 @@ SRC_URI="https://github.com/coreos/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE=""
 IUSE="doc examples"
 
 DEPEND=">=dev-lang/go-1.2"
 RDEPEND=""
 
 src_compile() {
-	./build || die 'build'
+	./build || die 'Build failed'
 }
 
-src_test() {
-	./test || die 'test'
-}
+# Will abort with following error:
+# go tool: no such tool "cover"; to install:
+# 	go get code.google.com/p/go.tools/cmd/cover
+#src_test() {
+#	./test || die 'Test failed'
+#}
 
 src_install() {
 	dobin "${S}"/bin/fleetd
 	dobin "${S}"/bin/fleetctl
+	systemd_dounit "${FILESDIR}"/fleetd.service
 
-	dodoc README.md || die "installing README"
+	insinto /etc/${PN}
+	newins "${PN}".conf.sample "${PN}".conf
 
+	dodoc README.md
 	use doc && dodoc Documentation/*.*
-
-	if use examples; then
-		mv fleet.conf.sample Documentation/examples/ || die "installing fleet.conf.sample"
-		dodoc -r Documentation/examples || die "installing more examples"
-	fi
-
-	systemd_dounit "${FILESDIR}"/fleetd.service || die "installing fleetd.service"
+	use examples && dodoc -r Documentation/examples
 }
 
 pkg_postinst() {

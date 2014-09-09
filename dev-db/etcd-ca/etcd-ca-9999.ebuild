@@ -14,16 +14,25 @@ EGIT_REPO_URI="https://github.com/coreos/etcd-ca.git"
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS=""
-IUSE=""
+IUSE="doc"
 
 DEPEND=">=dev-lang/go-1.2"
-
 RDEPEND=""
 
 src_compile() {
-	./build
+	./build || "Build failed"
 }
+
+# Will abort with following error:
+# go tool: no such tool "cover"; to install:
+# 	go get code.google.com/p/go.tools/cmd/cover
+#src_test() {
+#	./test || die 'Test failed'
+#}
 
 src_install() {
 	dobin "${S}"/bin/"${PN}"
+
+	dodoc README.md
+	use doc && dodoc Documentation/*
 }
