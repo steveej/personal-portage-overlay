@@ -34,5 +34,5 @@ src_install() {
 	dobin "${S}"/bin/"${PN}"
 
 	dodoc README.md
-	use doc && dodoc Documentation/*
+	use doc && dodoc -r Documentation/*
 }

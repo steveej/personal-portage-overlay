@@ -3,8 +3,7 @@
 # $Header: $
 
 EAPI=5
-inherit user
-inherit systemd
+inherit systemd user
 
 DESCRIPTION="A highly-available key value store for shared configuration and service discovery"
 HOMEPAGE="https://github.com/coreos/etcd"
@@ -29,6 +28,7 @@ src_compile() {
 #}
 
 src_install() {
+
 	dobin "${WORKDIR}"/etcd-"${PV}"/bin/etcd
 	dobin "${WORKDIR}"/etcd-"${PV}"/bin/bench
 
@@ -40,16 +40,18 @@ src_install() {
 	systemd_dotmpfilesd "${FILESDIR}"/"${PN}".tmpdfsd.conf
 
 	dodoc README.md
-	use doc && dodoc -r Documentation
+	use doc && dodoc -r Documentation/*
+
 }
 
+ETCD_DATA_DIR=${ROOT}/var/lib/etcd
 pkg_postinst() {
 	ebegin "Creating etcd user"
 	enewgroup etcd
 	enewuser etcd -1 -1 /var/lib/etcd etcd
-	dodir /var/lib/etcd
-	dodir /var/log/etcd
-	dodir /var/run/etcd
-	fowners etcd /var/run/etcd
-	fowners etcd /var/log/etcd
+
+	if [ ! -d ${ETCD_DATA_DIR} ]; then
+		mkdir ${ETCD_DATA_DIR}
+		chown etcd:etcd ${ETCD_DATA_DIR}
+	fi
 }

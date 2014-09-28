@@ -3,10 +3,13 @@ Description=etcd
 
 [Service]
 User=etcd
+Group=etcd
 PermissionsStartOnly=true
 ExecStart=/usr/bin/etcd 
 Restart=always
 RestartSec=10s
+RuntimeDirectory=/run/etcd
+RuntimeDirectoryMode=0755
 
 [Install]
 WantedBy=multi-user.target
