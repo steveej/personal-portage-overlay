@@ -6,10 +6,10 @@ EAPI="5"
 
 inherit gnome2-utils cmake-utils
 
-PV="${PV/_rc/-rcgit.}"
-
 if [[ ${PV} != 9999 ]]; then
-	SRC_URI="https://github.com/FreeRDP/Remmina/archive/${PV}.tar.gz -> ${P}.tar.gz"
+	inherit vcs-snapshot
+	SILLY_PV="${PV/_rc/-rcgit.}"
+	SRC_URI="https://github.com/FreeRDP/Remmina/archive/v${SILLY_PV}.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="~amd64 ~x86"
 else
 	inherit git-2
@@ -54,8 +54,6 @@ RDEPEND+="
 
 DOCS=( README )
 PATCHES=( "${FILESDIR}/remmina-external_tools.patch" )
-
-S="${WORKDIR}/Remmina-${PV}"
 
 src_configure() {
 	local mycmakeargs=(
