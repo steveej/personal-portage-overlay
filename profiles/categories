@@ -1,7 +1,8 @@
 app-admin
-app-emulation
-app-paludis
 dev-db
+app-emulation
+app-misc
+app-paludis
 gnome-extra
 net-misc
 www-apps
