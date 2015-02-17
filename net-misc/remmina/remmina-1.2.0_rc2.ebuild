@@ -38,7 +38,7 @@ RDEPEND="
 	crypt? ( dev-libs/libgcrypt:0 )
 	freerdp? ( =net-misc/freerdp-1.2* )
 	gnome-keyring? ( gnome-base/libgnome-keyring )
-	ssh? ( vte net-libs/libssh[sftp] )
+	ssh? ( net-libs/libssh[sftp] )
 	telepathy? ( net-libs/telepathy-glib )
 	vte? ( x11-libs/vte:2.90 )
 "
