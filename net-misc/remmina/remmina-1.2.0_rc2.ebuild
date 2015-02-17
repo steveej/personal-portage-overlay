@@ -25,6 +25,7 @@ HOMEPAGE="http://remmina.sourceforge.net/"
 LICENSE="GPL-2"
 SLOT="0"
 IUSE="ayatana avahi crypt debug freerdp gnome-keyring nls ssh telepathy vte"
+REQUIRED_USE="ssh? ( vte )"
 
 RDEPEND="
 	x11-libs/gtk+:3
@@ -35,11 +36,9 @@ RDEPEND="
 	avahi? ( net-dns/avahi[gtk3] )
 	ayatana? ( dev-libs/libappindicator )
 	crypt? ( dev-libs/libgcrypt:0 )
-	freerdp? (
-		>=net-misc/freerdp-1.2.0_beta1_pre20141115
-	)
+	freerdp? ( =net-misc/freerdp-1.2* )
 	gnome-keyring? ( gnome-base/libgnome-keyring )
-	ssh? ( net-libs/libssh[sftp] )
+	ssh? ( vte net-libs/libssh[sftp] )
 	telepathy? ( net-libs/telepathy-glib )
 	vte? ( x11-libs/vte:2.90 )
 "
