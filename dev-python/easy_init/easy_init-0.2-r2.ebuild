@@ -17,8 +17,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="test"
 
-DEPEND=""
-RDEPEND=""
+DEPEND="test? ( dev-python/pytest[${PYTHON_USEDEP}] )"
 
 python_test() {
 	esetup.py test
