@@ -11,4 +11,10 @@
 	</maintainer>	
 	<longdescription lang="en">
 	</longdescription>
+	<use>
+		<flag name="etcd">Install the etcd daemon binary</flag>
+		<flag name="etcdctl">Install the etcdctl utility binary</flag>
+		<flag name="etcd-migrate">Install the etcd-migrate utility binary</flag>
+		<flag name="etcd-dump-logs">Install the etcd-migrate utility binary</flag>
+	</use>
 </pkgmetadata>
