@@ -103,6 +103,7 @@ kernel-builder_src_install() {
 			${img_install_path}/${initramfs_basefilename}.conf
 	fi
 
+	rm -Rf ${D}/lib/firmware
 	kernel-2_src_install
 }
 
