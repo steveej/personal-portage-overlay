@@ -27,7 +27,7 @@ DEPEND="dracut? ( sys-kernel/dracut )
 # 				--tempdir="${T}" --no-save-config --makeopts="${MAKEOPTS}" \
 # 				--bootloader=none"
 
-MAKE_ARCH=${ARCH}
+KARCH=${ARCH}
 
 kernel-builder_pkg_setup() {
 	kernel-2_pkg_setup
@@ -42,11 +42,6 @@ kernel-builder_src_compile() {
 		die "The 'build'-flag is set, aborting..."
 	fi
 
-	# kernel has no arch/amd64
-	if [[ ${MAKE_ARCH} == "amd64" ]]; then
-		MAKE_ARCH="x86_64"
-	fi
-
 	if use savedconfig; then
 		local kernel_config="kernel.config"
 		if use dracut; then
@@ -59,13 +54,13 @@ kernel-builder_src_compile() {
 		restore_config ${savedconfig_files}
 		mv ${S}/${kernel_config} ${S}/.config
 	else
-		ARCH=${MAKE_ARCH} emake -j1 defconfig
+		ARCH=${KARCH} emake -j1 defconfig
 	fi
 
 	# Only seems to be needed for headers
 	# kernel-2_src_compile 
 
-	ARCH=${MAKE_ARCH} emake all
+	ARCH=${KARCH} emake all
 }
 
 kernel-builder_src_test() {
@@ -75,11 +70,11 @@ kernel-builder_src_test() {
 kernel-builder_src_install() {
 	local img_install_path=${D}/boot
 	mkdir -p ${img_install_path}
-	ARCH=${MAKE_ARCH} INSTALL_PATH=${img_install_path} \
+	ARCH=${KARCH} INSTALL_PATH=${img_install_path} \
 		emake -j1 install
 
 	mkdir -p ${D}/lib/modules
-	ARCH=${MAKE_ARCH} INSTALL_MOD_PATH=${D} \
+	ARCH=${KARCH} INSTALL_MOD_PATH=${D} \
 		emake -j1 modules_install
 
 	if use dracut; then
@@ -87,7 +82,7 @@ kernel-builder_src_install() {
 		local dracut_tmpdir=${T}/dracut
 		mkdir -p ${dracut_tmpdir}
 		dracut \
-			${img_install_path}/initramfs-$(make kernelversion).img \
+			${img_install_path}/initramfs-${KV}.img \
 			--conf ${INITRAMFS_CONFIG} \
 			--kmoddir ${D}/lib/modules \
 			--tmpdir ${dracut_tmpdir} || die
