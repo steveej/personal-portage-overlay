@@ -14,18 +14,13 @@ inherit kernel-2 mount-boot savedconfig
 
 EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_test src_install pkg_preinst pkg_postinst pkg_prerm pkg_postrm
 
-IUSE="initramfs dracut genkernel"
+IUSE="dracut genkernel"
 
-REQUIRED_USE="initramfs? ( ^^ ( dracut genkernel ) )"
+REQUIRED_USE="^^ ( dracut genkernel )"
 
 DEPEND="dracut? ( sys-kernel/dracut )
 	genkernel? ( || ( sys-kernel/genkernel sys-kernel/genkernel-next ) )"
 
-# What is $ED?
-# GENKERNEL_OPTS="--kerneldir="${S}" --logfile=/dev/null --no-symlink \
-# 				--no-mountboot --bootdir="${ED}"/boot --module-prefix="${ED}" \
-# 				--tempdir="${T}" --no-save-config --makeopts="${MAKEOPTS}" \
-# 				--bootloader=none"
 
 KARCH=${ARCH}
 
@@ -45,9 +40,9 @@ kernel-builder_src_compile() {
 	if use savedconfig; then
 		local kernel_config="kernel.config"
 		if use dracut; then
-			INITRAMFS_CONFIG="dracut.config"
+			INITRAMFS_CONFIG="dracut.conf"
 		elif use genkernel; then
-			INITRAMFS_CONFIG="genkernel.config"
+			INITRAMFS_CONFIG="genkernel.conf"
 		fi
 		local savedconfig_files="${kernel_config} ${INITRAMFS_CONFIG}"
 		einfo "Restoring ${savedconfig_files}"
@@ -69,6 +64,7 @@ kernel-builder_src_test() {
 
 kernel-builder_src_install() {
 	local img_install_path=${D}/boot
+	local initramfs_basefilename=initramfs-${KV}
 	mkdir -p ${img_install_path}
 	ARCH=${KARCH} INSTALL_PATH=${img_install_path} \
 		emake -j1 install
@@ -79,20 +75,33 @@ kernel-builder_src_install() {
 
 	if use dracut; then
 		addpredict /etc/ld.so.cache~
-		local dracut_tmpdir=${T}/dracut
-		mkdir -p ${dracut_tmpdir}
 		dracut \
-			${img_install_path}/initramfs-${KV}.img \
+			${img_install_path}/${initramfs_basefilename}.img \
 			--conf ${INITRAMFS_CONFIG} \
 			--kmoddir ${D}/lib/modules \
-			--tmpdir ${dracut_tmpdir} || die
+			--tmpdir ${T} || die
+
 	elif use genkernel; then
-		die "TODO: create initramfs with genkernel"
-#		dodir /boot
-#		dodir /lib/modules
-#		#build out of tree with --kernel-outputdir=
-#		genkernel all "${GENKERNEL_OPTS}"
-#		#--install from src_install?
+		addwrite /etc/ld.so.cache
+		addwrite /etc/ld.so.cache~
+		genkernel \
+			initramfs \
+			--config=${INITRAMFS_CONFIG} \
+			--compress-initramfs-type=gzip \
+			--kerneldir="${S}" \
+			--logfile=${T}/genkernel.log \
+			--no-symlink \
+			--no-mountboot \
+			--bootdir="${D}"/boot \
+			--module-prefix="${D}" \
+			--tempdir="${T}" \
+			--no-save-config \
+			--bootloader="none" || die
+	fi
+
+	if [[ -f ${INITRAMFS_CONFIG} ]]; then
+		mv ${INITRAMFS_CONFIG} \
+			${img_install_path}/${initramfs_basefilename}.conf
 	fi
 
 	kernel-2_src_install
