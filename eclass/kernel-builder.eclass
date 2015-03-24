@@ -48,13 +48,12 @@ kernel-builder_src_compile() {
 		einfo "Restoring ${savedconfig_files}"
 		restore_config ${savedconfig_files}
 		mv ${S}/${kernel_config} ${S}/.config
-	else
-		ARCH=${KARCH} emake -j1 defconfig
 	fi
 
 	# Only seems to be needed for headers
 	# kernel-2_src_compile 
 
+	ARCH=${KARCH} emake -j1 olddefconfig
 	ARCH=${KARCH} emake all
 }
 
