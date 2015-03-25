@@ -22,8 +22,6 @@ DEPEND="dracut? ( sys-kernel/dracut )
 	genkernel? ( || ( sys-kernel/genkernel sys-kernel/genkernel-next ) )"
 
 
-KARCH=${ARCH}
-
 kernel-builder_pkg_setup() {
 	kernel-2_pkg_setup
 }
@@ -62,14 +60,14 @@ kernel-builder_src_test() {
 }
 
 kernel-builder_src_install() {
-	local img_install_path=${D}/boot
+	local img_install_path=${ED}/boot
 	local initramfs_basefilename=initramfs-${KV}
 	mkdir -p ${img_install_path}
 	ARCH=${KARCH} INSTALL_PATH=${img_install_path} \
 		emake -j1 install
 
-	mkdir -p ${D}/lib/modules
-	ARCH=${KARCH} INSTALL_MOD_PATH=${D} \
+	mkdir -p ${ED}/lib/modules
+	ARCH=${KARCH} INSTALL_MOD_PATH=${ED} \
 		emake -j1 modules_install
 
 	if use dracut; then
@@ -77,7 +75,7 @@ kernel-builder_src_install() {
 		dracut \
 			${img_install_path}/${initramfs_basefilename}.img \
 			--conf ${INITRAMFS_CONFIG} \
-			--kmoddir ${D}/lib/modules \
+			--kmoddir ${ED}/lib/modules \
 			--tmpdir ${T} || die
 
 	elif use genkernel; then
@@ -91,8 +89,8 @@ kernel-builder_src_install() {
 			--logfile=${T}/genkernel.log \
 			--no-symlink \
 			--no-mountboot \
-			--bootdir="${D}"/boot \
-			--module-prefix="${D}" \
+			--bootdir="${ED}"/boot \
+			--module-prefix="${ED}" \
 			--tempdir="${T}" \
 			--no-save-config \
 			--bootloader="none" || die
@@ -103,7 +101,7 @@ kernel-builder_src_install() {
 			${img_install_path}/${initramfs_basefilename}.conf
 	fi
 
-	rm -Rf ${D}/lib/firmware
+	rm -Rf ${ED}/lib/firmware
 	kernel-2_src_install
 }
 
