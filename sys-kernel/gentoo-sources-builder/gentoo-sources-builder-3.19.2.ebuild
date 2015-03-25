@@ -7,7 +7,7 @@ ETYPE="sources"
 K_WANT_GENPATCHES="base extras experimental"
 K_GENPATCHES_VER="3"
 K_DEBLOB_AVAILABLE="0"
-inherit kernel-2
+inherit kernel-builder
 detect_version
 detect_arch
 
