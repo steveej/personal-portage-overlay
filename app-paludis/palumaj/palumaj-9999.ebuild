@@ -16,7 +16,7 @@ KEYWORDS="~amd64 ~x86"
 IUSE="ask"
 
 DEPEND=""
-RDEPEND="sys-apps/paludis[ask?]"
+RDEPEND="sys-apps/paludis"
 
 src_install() {
 	dosbin ${S}/palumaj 
