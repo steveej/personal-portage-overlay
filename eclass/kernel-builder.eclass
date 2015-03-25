@@ -60,22 +60,38 @@ kernel-builder_src_test() {
 }
 
 kernel-builder_src_install() {
-	local img_install_path=${ED}/boot
+	# Install kernel image
+	local img_install_path=${ED}boot
 	local initramfs_basefilename=initramfs-${KV}
 	mkdir -p ${img_install_path}
 	ARCH=${KARCH} INSTALL_PATH=${img_install_path} \
 		emake -j1 install
 
+	# Install modules
 	mkdir -p ${ED}/lib/modules
 	ARCH=${KARCH} INSTALL_MOD_PATH=${ED} \
 		emake -j1 modules_install
+	if [[ -d ${ED}/lib/modules/${KV} ]]; then
+		rm ${ED}lib/modules/${KV}/build
+		rm ${ED}lib/modules/${KV}/source
+		ln -sf ${ROOT}usr/src/linux-${KV_FULL} ${ED}lib/modules/${KV}/build
+		ln -sf ${ROOT}usr/src/linux-${KV_FULL} ${ED}lib/modules/${KV}/source
+	fi
+	depmod -b ${ED} ${KV} 
 
+	# Cleanup
+	ARCH=${KARCH} emake -j1 clean
+	rm -Rf ${ED}/lib/firmware
+
+
+	# Build initramfs
 	if use dracut; then
 		addpredict /etc/ld.so.cache~
 		dracut \
 			${img_install_path}/${initramfs_basefilename}.img \
+			--kver ${KV} \
 			--conf ${INITRAMFS_CONFIG} \
-			--kmoddir ${ED}/lib/modules \
+			--kmoddir ${ED}lib/modules/${KV} \
 			--tmpdir ${T} || die
 
 	elif use genkernel; then
@@ -85,23 +101,21 @@ kernel-builder_src_install() {
 			initramfs \
 			--config=${INITRAMFS_CONFIG} \
 			--compress-initramfs-type=gzip \
-			--kerneldir="${S}" \
+			--kerneldir=${S} \
 			--logfile=${T}/genkernel.log \
 			--no-symlink \
 			--no-mountboot \
-			--bootdir="${ED}"/boot \
-			--module-prefix="${ED}" \
-			--tempdir="${T}" \
+			--bootdir={ED}boot \
+			--module-prefix=${ED} \
+			--tempdir=${T} \
 			--no-save-config \
-			--bootloader="none" || die
+			--bootloader=none || die
 	fi
-
 	if [[ -f ${INITRAMFS_CONFIG} ]]; then
 		mv ${INITRAMFS_CONFIG} \
 			${img_install_path}/${initramfs_basefilename}.conf
 	fi
 
-	rm -Rf ${ED}/lib/firmware
 	kernel-2_src_install
 }
 
