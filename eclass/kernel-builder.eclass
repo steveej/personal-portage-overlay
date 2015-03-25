@@ -16,7 +16,7 @@ EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_test src_install pkg_prein
 
 IUSE="dracut genkernel"
 
-REQUIRED_USE="^^ ( dracut genkernel )"
+REQUIRED_USE="?? ( dracut genkernel )"
 
 DEPEND="dracut? ( sys-kernel/dracut )
 	genkernel? ( || ( sys-kernel/genkernel sys-kernel/genkernel-next ) )"
