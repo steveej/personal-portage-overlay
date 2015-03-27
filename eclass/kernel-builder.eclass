@@ -14,9 +14,10 @@ inherit kernel-2 mount-boot savedconfig
 
 EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_test src_install pkg_preinst pkg_postinst pkg_prerm pkg_postrm
 
-IUSE="dracut genkernel minimal"
+IUSE="make dracut genkernel minimal"
 
-REQUIRED_USE="?? ( dracut genkernel )"
+REQUIRED_USE="?? ( dracut genkernel )
+dracut? ( make )"
 
 DEPEND="dracut? ( sys-kernel/dracut )
 	genkernel? ( || ( sys-kernel/genkernel sys-kernel/genkernel-next ) )"
@@ -43,9 +44,6 @@ GENKERNEL_ARGUMENTS="\
  --bootloader=none \
 "
 
-initramfs_requested() {
-	use dracut || use genkernel
-}
 
 kernel-builder_pkg_setup() {
 	kernel-2_pkg_setup
@@ -62,15 +60,10 @@ kernel-builder_src_compile() {
 
 	if use savedconfig; then
 		local savedconfig_files="${KERNEL_CONFIG}"
-		if initramfs_requested; then
-			if use dracut && [[ -f ${DRACUT_CONFIG} ]]; then
-				INITRAMFS_CONFIG=${DRACUT_CONFIG}
-				DRACUT_ARGUMENTS+=" --conf ${DRACUT_CONFIG}"
-			elif use genkernel && [[ -f ${GENKERNEL_CONFIG} ]]; then
-				INITRAMFS_CONFIG=${GENKERNEL_CONFIG}
-				GENKERNEL_ARGUMENTS+=" --config ${GENKERNEL_CONFIG}"
-			fi
-			savedconfig_files+=" ${INITRAMFS_CONFIG}"
+		if use dracut; then
+			savedconfig_files+=" ${DRACUT_CONFIG}"
+		elif use genkernel; then
+			savedconfig_files+=" ${GENKERNEL_CONFIG}"
 		fi
 		elog "Restoring ${savedconfig_files}"
 		restore_config ${savedconfig_files}
@@ -80,8 +73,10 @@ kernel-builder_src_compile() {
 	# Only seems to be needed for headers
 	# kernel-2_src_compile 
 
-	ARCH=${KARCH} emake -j1 olddefconfig
-	ARCH=${KARCH} emake all
+	if use make; then
+		ARCH=${KARCH} emake -j1 olddefconfig
+		ARCH=${KARCH} emake all
+	fi
 }
 
 kernel-builder_src_test() {
@@ -91,52 +86,75 @@ kernel-builder_src_test() {
 kernel-builder_src_install() {
 	local img_install_path=${ED}boot
 	local initramfs_basefilename=initramfs-${KV}
-	mkdir -p ${img_install_path}
+	local initramfs_config=""
 
-	# Install kernel image
-	ARCH=${KARCH} INSTALL_PATH=${img_install_path} \
-		emake -j1 install
+	# make kernel
+	if use make; then
+		mkdir -p ${img_install_path}
 
-	# Install modules
-	if [[ $(grep CONFIG_MODULES=y .config) ]];then
-		elog "Installing kernel modules"
-		mkdir -p ${ED}/lib/modules
-		ARCH=${KARCH} INSTALL_MOD_PATH=${ED} \
-			emake -j1 modules_install
-		rm ${ED}lib/modules/${KV}/build
-		rm ${ED}lib/modules/${KV}/source
-		ln -sf ${ROOT}usr/src/linux-${KV_FULL} ${ED}lib/modules/${KV}/build
-		ln -sf ${ROOT}usr/src/linux-${KV_FULL} ${ED}lib/modules/${KV}/source
-		depmod -b ${ED} ${KV}
-	fi
+		# Install kernel image
+		ARCH=${KARCH} INSTALL_PATH=${img_install_path} \
+			emake -j1 install
 
-	# Cleanup
-	rm -Rf ${ED}/lib/firmware
-	if use minimal; then
-		ARCH=${KARCH} emake -j1 clean
-		ewarn "Minimal install is not properly supported yet."
-	fi
+		# Install modules
+		if [[ $(grep CONFIG_MODULES=y .config) ]];then
+			elog "Installing kernel modules"
+			mkdir -p ${ED}/lib/modules
+			ARCH=${KARCH} INSTALL_MOD_PATH=${ED} \
+				emake -j1 modules_install
+			rm ${ED}lib/modules/${KV}/build
+			rm ${ED}lib/modules/${KV}/source
+			ln -sf ${ROOT}usr/src/linux-${KV_FULL} ${ED}lib/modules/${KV}/build
+			ln -sf ${ROOT}usr/src/linux-${KV_FULL} ${ED}lib/modules/${KV}/source
+			depmod -b ${ED} ${KV}
+		fi
 
-	# Initamfs handling
-	if initramfs_requested; then
-		# Sandbox does not detect chroot'ed paths. See Bug 431038
-		addwrite /etc/ld.so.cache
-		addwrite /etc/ld.so.cache~
-
+		# Dracut initramfs
 		if use dracut; then
-			elog Running dracut ${img_install_path}/${initramfs_basefilename}.img \
+			# Sandbox does not detect chroot'ed paths. See Bug 431038
+			addwrite /etc/ld.so.cache
+			addwrite /etc/ld.so.cache~
+			if [[ -f ${DRACUT_CONFIG} ]]; then
+				initramfs_config=${DRACUT_CONFIG}
+				DRACUT_ARGUMENTS+=" --conf ${DRACUT_CONFIG}"
+			fi
+			elog Running dracut \ 
+				${img_install_path}/${initramfs_basefilename}.img \
 				${DRACUT_ARGUMENTS}
-			dracut ${img_install_path}/${initramfs_basefilename}.img \
+			dracut \
+				${img_install_path}/${initramfs_basefilename}.img \
 				${DRACUT_ARGUMENTS} || die
-		elif use genkernel; then
+
+			mv ${DRACUT_CONFIG} \
+				${img_install_path}/${initramfs_basefilename}-dracut.conf
+		fi
+
+		# Cleanup
+		rm -Rf ${ED}/lib/firmware 2>&1 > /dev/null
+		ARCH=${KARCH} emake -j1 clean
+	fi
+
+	if use genkernel; then
+		mkdir -p ${img_install_path}
+		if [[ -f ${GENKERNEL_CONFIG} ]]; then
+			initramfs_config=${GENKERNEL_CONFIG}
+			GENKERNEL_ARGUMENTS+=" --config ${GENKERNEL_CONFIG}"
+		fi
+		# Genkernel Initramfs
+		if use make; then
 			genkernel initramfs \
 				"${GENKERNEL_ARGUMENTS}" || die
+		# Genkernel all
+		else
+			ewarn "genkernel kernel build is not supported yet"
 		fi
 
-		if [[ -n ${INITRAMFS_CONFIG} ]]; then
-			mv /${INITRAMFS_CONFIG} \
-			${img_install_path}/${initramfs_basefilename}.conf
-		fi
+		mv ${DRACUT_CONFIG} \
+			${img_install_path}/${initramfs_basefilename}-genkernel.conf
+	fi
+
+	if use minimal; then
+		ewarn "Minimal install is not supported yet."
 	fi
 
 	kernel-2_src_install
