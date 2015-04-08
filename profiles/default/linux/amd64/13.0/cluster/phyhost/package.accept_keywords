@@ -1,2 +1,5 @@
 sys-kernel/dracut ~amd64
 sys-apps/portage ~amd64
+
+dev-db/etcd ~amd64
+app-admin/fleet ~amd64
