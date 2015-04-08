@@ -1,2 +1,2 @@
-sys-kernel/gentoo-sources::steveeJ dracut experimental make savedconfig symlink minimal
+sys-kernel/gentoo-sources dracut experimental make savedconfig symlink minimal
 sys-apps/systemd http importd curl lzma gcrypt
