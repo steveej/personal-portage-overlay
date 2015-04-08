@@ -1,5 +1,9 @@
-sys-kernel/dracut ~amd64
 sys-apps/portage ~amd64
 
+sys-kernel/dracut ~amd64
+sys-boot/grub ~amd64
+sys-fs/btrfs-progs ~amd64
+
+sys-apps/systemd ~amd64
 dev-db/etcd ~amd64
 app-admin/fleet ~amd64
