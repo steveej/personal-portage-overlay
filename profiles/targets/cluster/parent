@@ -1,2 +1,2 @@
-gentoo:targets/systemd
 gentoo:default/linux
+gentoo:targets/systemd
