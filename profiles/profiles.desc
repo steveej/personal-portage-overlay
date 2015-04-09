@@ -1,1 +1,4 @@
-amd64  default/linux/amd64/13.0/cluster/phyhost stable
+amd64 default/linux/amd64/13.0/systemd stable
+amd64 default/linux/amd64/13.0/systemd/fleet stable
+amd64 cluster/linux/amd64/latest stable
+amd64 cluster/linux/amd64/latest/phyhost stable

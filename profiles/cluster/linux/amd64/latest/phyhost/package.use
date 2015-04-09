@@ -1,2 +1,3 @@
 sys-kernel/gentoo-sources dracut experimental make savedconfig symlink minimal
 sys-apps/systemd http importd curl lzma gcrypt
+app-emulation/libvirt lvm libvirtd fuse qemu rbd virt-network lxc
