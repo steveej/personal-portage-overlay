@@ -39,7 +39,7 @@ src_install() {
 	insinto /etc/"${PN}"
 	doins "${FILESDIR}"/"${PN}".env
 
-	newinitd "${FILESDIR}"/etcd.initd etcd
+	newinitd "${FILESDIR}"/${PN}.2.initd etcd
 	systemd_newunit "${FILESDIR}"/"${PN}".2.service "${PN}".service
 	systemd_dotmpfilesd "${FILESDIR}"/"${PN}".tmpdfsd.conf
 

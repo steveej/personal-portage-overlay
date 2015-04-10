@@ -6,9 +6,10 @@
 PROGNAME=etcd
 PIDPATH=/run/${PROGNAME}
 PIDFILE=${PIDPATH}/${PROGNAME}.pid
-ETCD_DATA_DIR=/var/lib/${PROGNAME}
+WORKING_DIRECTORY=/var/lib/${PROGNAME}
 LOGPATH=/var/log/${PROGNAME}
 USER=etcd
+ENV_FILE=/etc/etcd/etcd.env
 
 depend() {
 	need net
@@ -31,10 +32,11 @@ start() {
 
 	ebegin "Starting $PROGNAME"
 	start-stop-daemon --start --pidfile $PIDFILE \
-		--user $USER --chdir $ETCD_DATA_DIR \
+		--user $USER --chdir $WORKING_DIRECTORY \
 		--background -1 $LOGPATH/$PROGNAME.log -2 $LOGPATH/$PROGNAME.err \
 		--ionice 1 --make-pidfile \
-		--exec /usr/bin/etcd
+        $(sed 's,^,-e ,' env | tr '\n' ' ') \
+		--exec /usr/bin/etcd \
 	eend $? "Failed to start $PROGNAME"
 }
 
