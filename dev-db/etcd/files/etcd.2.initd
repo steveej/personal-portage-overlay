@@ -1,7 +1,6 @@
 #!/sbin/runscript
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/nginx/files/nginx.init-r2,v 1.1 2010/01/03 19:51:41 djc Exp $
 
 PROGNAME=etcd
 PIDPATH=/run/${PROGNAME}
@@ -44,11 +43,11 @@ stop() {
 	ebegin "Stopping $PROGNAME"
 	start-stop-daemon --stop --pidfile $PIDFILE
 	eend $? "Failed to stop $PROGNAME"
-	rm -f /run/nginx.pid
+	rm -f /run/$PROGNAME.pid
 }
 
 reload() {
-	ebegin "Refreshing nginx' configuration"
+	ebegin "Refreshing $PROGNAME' configuration"
 	kill -HUP `cat $PIDFILE` &>/dev/null
 	eend $? "Failed to reload $PROGNAME"
 }
