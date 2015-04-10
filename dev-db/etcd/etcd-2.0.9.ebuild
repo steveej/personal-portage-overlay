@@ -37,10 +37,10 @@ src_install() {
 	use etcd-dump-logs && dobin "${WORKDIR}"/etcd-"${PV}"/bin/etcd-migrate
 
 	insinto /etc/"${PN}"
-	doins "${FILESDIR}"/"${PN}".conf
+	doins "${FILESDIR}"/"${PN}".env
 
 	newinitd "${FILESDIR}"/etcd.initd etcd
-	systemd_dounit "${FILESDIR}"/"${PN}".service
+	systemd_newunit "${FILESDIR}"/"${PN}".2.service "${PN}".service
 	systemd_dotmpfilesd "${FILESDIR}"/"${PN}".tmpdfsd.conf
 
 	dodoc README.md
