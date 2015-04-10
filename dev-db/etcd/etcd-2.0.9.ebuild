@@ -37,7 +37,7 @@ src_install() {
 	use etcd-dump-logs && dobin "${WORKDIR}"/etcd-"${PV}"/bin/etcd-migrate
 
 	insinto /etc/"${PN}"
-	doins "${FILESDIR}"/"${PN}".env
+    doins "${FILESDIR}"/"${PN}".env
 
 	newinitd "${FILESDIR}"/${PN}.2.initd etcd
 	systemd_newunit "${FILESDIR}"/"${PN}".2.service "${PN}".service
@@ -58,4 +58,10 @@ pkg_postinst() {
 		mkdir ${ETCD_DATA_DIR}
 		chown etcd:etcd ${ETCD_DATA_DIR}
 	fi
+
+	elog "Starting with version 2, etcd does not support conf-Files. Instead it"
+	elog "is now possible to provide ENVIRONMENT variables to the etcd process"
+	elog "via the the file at /etc/etcd/etcd.env. You can provide one variable"
+	elog "and value per line. For more information on the configuration options"
+	elog "please see https://github.com/coreos/etcd/blob/master/Documentation/configuration.md#configuration-flags"
 }
