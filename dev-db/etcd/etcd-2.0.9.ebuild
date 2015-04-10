@@ -1,4 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -37,7 +37,7 @@ src_install() {
 	use etcd-dump-logs && dobin "${WORKDIR}"/etcd-"${PV}"/bin/etcd-migrate
 
 	insinto /etc/"${PN}"
-    doins "${FILESDIR}"/"${PN}".env
+	doins "${FILESDIR}"/"${PN}".env
 
 	newinitd "${FILESDIR}"/${PN}.2.initd etcd
 	systemd_newunit "${FILESDIR}"/"${PN}".2.service "${PN}".service
