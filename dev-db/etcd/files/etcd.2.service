@@ -5,6 +5,7 @@ Description=etcd
 User=etcd
 Group=etcd
 PermissionsStartOnly=true
+WorkingDirectory=/var/lib/etcd
 EnvironmentFile=/etc/etcd/etcd.env
 ExecStart=/usr/bin/etcd
 Restart=always
