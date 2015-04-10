@@ -34,7 +34,7 @@ start() {
 		--user $USER --chdir $WORKING_DIRECTORY \
 		--background -1 $LOGPATH/$PROGNAME.log -2 $LOGPATH/$PROGNAME.err \
 		--ionice 1 --make-pidfile \
- 		$(sed 's,^,-e ,' env | tr '\n' ' ') \
+ 		$(sed 's,^,-e ,' /etc/etcd/etcd.env | tr '\n' ' ') \
 		--exec /usr/bin/etcd \
 	eend $? "Failed to start $PROGNAME"
 }
