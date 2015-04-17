@@ -3,6 +3,7 @@
 <pkgmetadata>
 <use>
   <flag name='deblob'>Remove binary blobs from kernel sources to provide libre license compliance.</flag>
+  <flag name='make'>Use make for compilation.</flag>
   <flag name='experimental'>Apply experimental patches; for more information, see "https://wiki.gentoo.org/wiki/Project:Kernel/Experimental".</flag>
   <flag name='genkernel'>Use genkernel(-next) to create the initrmfs</flag>
   <flag name='dracut'>Use dracut to create the initrmfs</flag>
