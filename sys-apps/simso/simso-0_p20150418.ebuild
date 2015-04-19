@@ -22,9 +22,6 @@ RDEPEND="
 >=dev-python/PyQt4-4.9
 >=dev-python/numpy-1.6
 "
-src_prepare() {
-epatch -p1 "${FILESDIR}"/0001-add-codeeditor.patch
-}
 
 #DEPEND="test? ( dev-python/pytest[${PYTHON_USEDEP}] )"
 #
