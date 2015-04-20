@@ -11,7 +11,7 @@ inherit kernel-builder
 detect_version
 detect_arch
 
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~ia64 ~mips ~s390 ~sh ~x86"
+KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~ia64 ~s390 ~sh ~x86"
 HOMEPAGE="http://dev.gentoo.org/~mpagano/genpatches"
 IUSE="deblob experimental"
 
