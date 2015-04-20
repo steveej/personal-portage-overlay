@@ -7,9 +7,9 @@ EAPI=5
 inherit autotools
 
 DESCRIPTION="extensions for cinnamon's file-manager nemo"
-HOMEPAGE=""
-SRC_URI="https://github.com/muzena/nemo-extensions/archive/2.2.x.tar.gz"
-LICENSE=""
+HOMEPAGE="https://github.com/linuxmint/nemo-extensions"
+SRC_URI="https://github.com/linuxmint/nemo-extensions/archive/2.2.x.tar.gz"
+LICENSE="GPL-2 GPL-3"
 SLOT="0"
 KEYWORDS="~amd64"
 
@@ -79,7 +79,7 @@ src_install () {
 			pushd nemo-${module}
 			emake DESTDIR="${D}" install
 			elog "Removing .a and .la files"
-			find ${D} -name "*.a" -exec rm {} + -o -name "*.la" -exec rm {} + || die
+			find "${D}" -name "*.a" -exec rm {} + -o -name "*.la" -exec rm {} + || die
 			dodoc README
 			popd
 		fi

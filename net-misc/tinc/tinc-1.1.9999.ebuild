@@ -1,12 +1,13 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/tinc/tinc-1.0.16.ebuild,v 1.2
+# $Header: $
 
 EAPI=5
 
+PYTHON_COMPAT=( python2_7 )
 [[ ${PV} = *9999* ]] && EXTRA_ECLASS="git-2 autotools" || EXTRA_ECLASS=""
 
-inherit systemd eutils ${EXTRA_ECLASS}
+inherit systemd eutils python-any-r1 ${EXTRA_ECLASS}
 
 MY_P=${P/_/}
 
@@ -28,17 +29,24 @@ if [[ ${PV} == *9999* ]]; then
 	KEYWORDS=""
 else
 	KEYWORDS="~amd64"
+	KEYWORDS="~amd64 ~arm ~arm64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 fi
-IUSE="+lzo +zlib +jumboframes raw uml -tunemu gcrypt vde"
 
-DEPEND="dev-libs/libevent
-	sys-libs/ncurses
-	!gcrypt? ( >=dev-libs/openssl-0.9.7c )
-	 gcrypt? ( dev-libs/libgcrypt )
+IUSE="+jumboframes +lzo +ncurses +openssl gcrypt gui +readline uml vde +zlib"
+
+DEPEND="dev-libs/openssl:*
 	lzo? ( dev-libs/lzo:2 )
-	zlib? ( >=sys-libs/zlib-1.1.4-r2 )
-	vde? ( net-misc/vde )"
-RDEPEND="${DEPEND}"
+	ncurses? ( sys-libs/ncurses )
+	readline? ( sys-libs/readline:* )
+	zlib? ( sys-libs/zlib )"
+RDEPEND="${DEPEND}
+	vde? ( net-misc/vde )
+	${PYTHON_DEPS}
+	gui? ( $(python_gen_any_dep '
+		dev-python/wxpython[${PYTHON_USEDEP}]
+		') )"
+
+REQUIRED_USE="^^ ( openssl gcrypt )"
 
 if [[ ${PV} != *9999* ]]; then
 	S="${WORKDIR}/${MY_P}"
