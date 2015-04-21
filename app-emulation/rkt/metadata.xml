@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer>
+		<email>code@stefanjunker.de</email>
+		<name>Stefan Junker</name>
+	</maintainer>	
+	<longdescription lang="en">
+		rkt is a new container runtime, designed for composability, security,
+		and speed. Today we are releasing a prototype version on GitHub to begin
+		gathering feedback from our community and explain why we are building
+		rkt. 
+	</longdescription>
+</pkgmetadata>
