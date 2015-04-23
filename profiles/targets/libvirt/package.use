@@ -1,3 +1,3 @@
-app-emulation/libvirt lvm virt-network fuse firewalld
+app-emulation/libvirt lvm virt-network fuse firewalld policykit
 net-dns/dnsmasq script
 dev-python/python-slip dbus

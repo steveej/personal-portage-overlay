@@ -7,3 +7,5 @@ sys-fs/btrfs-progs ~amd64
 sys-apps/systemd ~amd64
 dev-db/etcd ~amd64
 app-admin/fleet ~amd64
+
+app-emulation/libvirt ~amd64

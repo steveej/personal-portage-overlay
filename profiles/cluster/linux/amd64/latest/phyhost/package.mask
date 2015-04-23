@@ -1,1 +1,2 @@
 sys-kernel/gentoo-sources::gentoo
+<sys-libs/glibc-2.20-r2
