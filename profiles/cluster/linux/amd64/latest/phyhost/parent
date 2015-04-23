@@ -1,3 +1,4 @@
 ..
 :targets/fleet
 :targets/kernel-builder
+:targets/libvirt
