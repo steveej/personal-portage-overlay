@@ -1,0 +1,3 @@
+app-emulation/libvirt lvm virt-network fuse firewalld
+net-dns/dnsmasq script
+dev-python/python-slip dbus
