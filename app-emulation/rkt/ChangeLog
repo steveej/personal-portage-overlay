@@ -1,3 +1,7 @@
+  24 Apr 2015; Stefan Junker <code@stefanjunker.de> rkt-0.5.4.ebuild:
+  app-emulation/rkt-0.5.4: pass stage1.aci to build script to make rkt binary
+  work without extra arguments.
+
 *rkt-0.5.4 (24 Apr 2015)
 
   24 Apr 2015; Stefan Junker <code@stefanjunker.de> +rkt-0.5.4.ebuild:

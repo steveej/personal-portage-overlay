@@ -21,7 +21,8 @@ DEPEND=">=dev-lang/go-1.4.1
 RDEPEND=""
 
 src_compile() {
-	./build || die 'Build failed'
+	RKT_STAGE1_IMAGE=/usr/share/rkt/stage1.aci \
+		./build || die 'Build failed'
 }
 
 #RESTRICT="test"  # Tests fail due to Gentoo bug #500452
