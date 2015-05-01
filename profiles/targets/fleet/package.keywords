@@ -1,0 +1,3 @@
+sys-apps/systemd ~amd64
+dev-db/etcd ~amd64
+app-admin/fleet ~amd64
