@@ -1,4 +1,4 @@
 app-emulation/libvirt lvm virt-network fuse firewalld policykit
-app-emulation/qemu spice ssh
+app-emulation/qemu spice ssh usb usbredir
 net-dns/dnsmasq script
 dev-python/python-slip dbus
