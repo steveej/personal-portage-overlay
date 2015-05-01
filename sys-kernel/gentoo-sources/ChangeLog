@@ -1,0 +1,9 @@
+*gentoo-sources-3.19.6 (01 May 2015)
+
+  01 May 2015; Stefan Junker <code@stefanjunker.de>
+  +gentoo-sources-3.19.6.ebuild, -gentoo-sources-3.18.9.ebuild,
+  -gentoo-sources-3.19.2.ebuild, -gentoo-sources-3.19.3.ebuild,
+  -gentoo-sources-3.19.5.ebuild, -gentoo-sources-4.0.0.ebuild,
+  gentoo-sources-3.18.11.ebuild, gentoo-sources-4.0.1.ebuild:
+  gentoo-sources: Delete unused versions. Remove all keywords to prevent
+  unintentional installations.
