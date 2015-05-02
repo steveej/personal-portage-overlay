@@ -1,0 +1,4 @@
+*etcd-2.0.10-r1 (02 May 2015)
+
+  02 May 2015; Stefan Junker <code@stefanjunker.de> +etcd-2.0.10-r1.ebuild:
+  dev-db/etcd revision bump to override official portage
