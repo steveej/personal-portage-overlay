@@ -1,0 +1,3 @@
+USE="elibc_glibc bindist mmx sse sse2 ipv6 unicode iconv"
+USE="${USE} -X -consolekit -modules -doc"
+PYTHON_TARGETS="python2_7 python3_4"
