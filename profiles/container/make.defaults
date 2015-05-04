@@ -1,4 +1,5 @@
-USE="elibc_glibc bindist mmx sse sse2 minimal ipv6 unicode iconv acl nls"
-USE="${USE} -X -consolekit -modules -doc"
-PYTHON_TARGETS="python2_7 python3_4"
+USE="elibc_glibc bindist mmx sse sse2 minimal ipv6 unicode iconv acl nls \
+    berkdb gdbm \
+    -X -consolekit -modules -doc"
+PYTHON_TARGETS="python2_7"
 PYTHON_SINGLE_TARGET="python2_7"
