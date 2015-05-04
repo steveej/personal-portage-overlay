@@ -1,1 +1,2 @@
 USE="ccache"
+PYTHON_TARGETS="python2_7"

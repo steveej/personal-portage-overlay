@@ -1,0 +1,2 @@
+app-arch/xz-utils nls
+sys-libs/ncurses -minimal
