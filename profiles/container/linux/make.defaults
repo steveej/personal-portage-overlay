@@ -1,0 +1,37 @@
+# Copyright 1999-2014 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/profiles/default/linux/make.defaults,v 1.20 2014/01/21 04:30:28 dirtyepic Exp $
+#
+# System-wide defaults for the Portage system
+# See portage(5) manpage
+#
+# Please avoid enabling things by default in here if possible. Understand any 
+# implications with core packages.  For example, if "java" is in USE and db 
+# has a conditional dependency on java (which it does,) then a JDK will be 
+# pulled in during *emerge system*!
+
+# Default starting set of USE flags for all default/linux profiles.
+USE="berkdb crypt ipv6 ncurses nls pam readline ssl tcpd zlib"
+
+# make sure toolchain has sane defaults <tooclhain@gentoo.org>
+USE="${USE} fortran openmp"
+
+# 2008/07/09 - Doug Goldstein <cardoe@gentoo.org>
+# Adding LDFLAGS="-Wl,-O1 for all Linux profiles by default
+# after discussion on the gentoo-dev ML. As we bang out a clear
+# direction with how LDFLAGS will be set by default, this entry
+# may move.
+# 2010/07/12 - Samuli Suominen <ssuominen@gentoo.org>
+# Note that adding LDFLAGS="-Wl,-O1 ${LDFLAGS}" breaks dev-util/boost-build
+# because of whitespace.
+LDFLAGS="-Wl,-O1 -Wl,--as-needed"
+
+# 2009/09/21 Robin H. Johnson <robbat2@gentoo.org>
+# http://archives.gentoo.org/gentoo-dev/msg_dc705dc2c1a45e18a85aa62e8fb17009.xml
+# Build kernel modules from linux-mod by default:
+
+USE="elibc_glibc bindist mmx sse sse2 minimal ipv6 unicode iconv acl nls \
+    minimal \
+    -X -consolekit -modules -doc"
+PYTHON_TARGETS="python2_7"
+PYTHON_SINGLE_TARGET="python2_7"
