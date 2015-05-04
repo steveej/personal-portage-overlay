@@ -1,3 +1,9 @@
+*rkt-9999 (04 May 2015)
+
+  04 May 2015; Stefan Junker <code@stefanjunker.de> +files/rkt-metadata.service,
+  +files/rkt-metadata.socket, +rkt-9999.ebuild, metadata.xml:
+  app-emulation/rkt: use git-r3 eclass and add metadata-service units
+
   24 Apr 2015; Stefan Junker <code@stefanjunker.de> rkt-0.5.4.ebuild:
   app-emulation/rkt-0.5.4: pass stage1.aci to build script to make rkt binary
   work without extra arguments.
