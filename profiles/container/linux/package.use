@@ -5,3 +5,6 @@
 # Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org> (13 Feb 2011)
 # Disable deprecated bsddb module of Python 2 by default.
 =dev-lang/python-2* -berkdb
+
+sys-apps/busybox -make-symlinks
+dev-lang/perl gdbm

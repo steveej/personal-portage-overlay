@@ -1,0 +1,12 @@
+dev-python/ssl-fetch ~amd64
+# required by app-crypt/gkeys-0.1-r1::gentoo
+# required by @profile
+# required by @world (argument)
+dev-python/pyGPG ~amd64
+# required by app-crypt/gkeys-0.1-r1::gentoo
+# required by @profile
+# required by @world (argument)
+dev-python/snakeoil ~amd64
+# required by @profile
+# required by @world (argument)
+app-crypt/gkeys ~amd64

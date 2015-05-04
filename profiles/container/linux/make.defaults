@@ -11,7 +11,9 @@
 # pulled in during *emerge system*!
 
 # Default starting set of USE flags for all default/linux profiles.
-USE="berkdb crypt ipv6 ncurses nls pam readline ssl tcpd zlib"
+USE="elibc_glibc berkdb crypt ipv6 ncurses nls pam readline ssl tcpd zlib \
+    bindist bzip2 unicode cxx cracklib acl iconv"
+
 
 # make sure toolchain has sane defaults <tooclhain@gentoo.org>
 USE="${USE} fortran openmp"
@@ -30,8 +32,5 @@ LDFLAGS="-Wl,-O1 -Wl,--as-needed"
 # http://archives.gentoo.org/gentoo-dev/msg_dc705dc2c1a45e18a85aa62e8fb17009.xml
 # Build kernel modules from linux-mod by default:
 
-USE="elibc_glibc bindist mmx sse sse2 minimal ipv6 unicode iconv acl nls \
-    minimal \
-    -X -consolekit -modules -doc"
 PYTHON_TARGETS="python2_7"
 PYTHON_SINGLE_TARGET="python2_7"
