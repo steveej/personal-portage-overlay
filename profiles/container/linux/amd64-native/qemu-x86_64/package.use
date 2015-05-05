@@ -1,1 +1,1 @@
-app-emulation qemu_softmmu_targets_x86_64
+app-emulation/qemu qemu_softmmu_targets_x86_64
