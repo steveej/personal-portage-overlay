@@ -1,11 +1,5 @@
-dev-util/catalyst
-
 # gkeys seems to be broken atm. 4th May, 2015
 # dev-python/urllib3
 # app-crypt/gkeys
-net-misc/curl
 
-sys-apps/coreutils
-sys-apps/findutils
-
-virtual/ssh
+dev-util/catalyst

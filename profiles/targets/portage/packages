@@ -1,0 +1,17 @@
+app-arch/tar
+net-misc/curl
+net-misc/wget
+
+sys-apps/baselayout
+sys-apps/coreutils
+sys-apps/findutils
+sys-apps/grep
+app-arch/gzip
+
+virtual/ssh
+dev-vcs/git
+
+sys-devel/make
+sys-apps/gawk
+
+virtual/package-manager
