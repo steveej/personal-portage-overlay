@@ -13,7 +13,7 @@
 # Default starting set of USE flags for all default/linux profiles.
 USE="elibc_glibc berkdb crypt ipv6 ncurses nls pam readline ssl tcpd zlib \
     bindist bzip2 unicode cxx cracklib acl iconv \
-    -man -doc -examples"
+    -X -gtk -man -doc -examples"
 
 
 # make sure toolchain has sane defaults <tooclhain@gentoo.org>

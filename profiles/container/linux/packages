@@ -8,3 +8,4 @@
 # The idea is to only create a new family of profiles when absolutely necessary.
 
 *virtual/libc
+sys-apps/findutils
