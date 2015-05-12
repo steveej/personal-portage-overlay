@@ -10,5 +10,5 @@
 *virtual/libc
 sys-apps/findutils
 virtual/awk
+sys-apps/gawk
 sys-apps/grep
-
