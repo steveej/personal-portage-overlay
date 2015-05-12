@@ -6,4 +6,5 @@ amd64 cluster/linux/amd64/latest/phyhost stable
 amd64 container/linux/amd64-native stable
 amd64 container/linux/amd64-native/catalyst stable
 amd64 container/linux/amd64-native/ceph stable
+amd64 container/linux/amd64-native/glusterfs stable
 amd64 container/linux/amd64-native/qemu-x86_64 stable
