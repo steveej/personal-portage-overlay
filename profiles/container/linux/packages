@@ -9,3 +9,6 @@
 
 *virtual/libc
 sys-apps/findutils
+virtual/awk
+sys-apps/grep
+
