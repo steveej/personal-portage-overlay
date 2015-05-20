@@ -49,11 +49,6 @@ src_install() {
 
 	into /usr/share/rkt
 	use actool && dobin "${S}"/bin/actool
-#	dobin "${S}"/bin/bridge
-#	dobin "${S}"/bin/init
-#	dobin "${S}"/bin/macvlan
-#	dobin "${S}"/bin/static
-#	dobin "${S}"/bin/veth
 
 	insinto /usr/share/rkt/
 	doins "${S}"/bin/stage1.aci

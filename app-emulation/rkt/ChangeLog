@@ -1,3 +1,6 @@
+  20 May 2015; Stefan Junker <code@stefanjunker.de> rkt-9999.ebuild:
+  rkt: Cleanup ebuild
+
 *rkt-9999 (04 May 2015)
 
   04 May 2015; Stefan Junker <code@stefanjunker.de> +files/rkt-metadata.service,
