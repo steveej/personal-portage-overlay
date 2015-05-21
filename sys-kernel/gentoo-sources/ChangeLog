@@ -1,3 +1,9 @@
+*gentoo-sources-4.0.4 (21 May 2015)
+
+  21 May 2015; Stefan Junker <code@stefanjunker.de>
+  +gentoo-sources-4.0.4.ebuild:
+  gentoo-sources::steveeJ: version bump to 4.0.4
+
 *gentoo-sources-3.19.6 (01 May 2015)
 
   01 May 2015; Stefan Junker <code@stefanjunker.de>
