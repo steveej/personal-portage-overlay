@@ -5,3 +5,4 @@ sys-boot/grub ~amd64
 sys-fs/btrfs-progs ~amd64
 
 =sys-kernel/gentoo-sources-3.19.6 **
+=sys-kernel/gentoo-sources-4.0.4 **
