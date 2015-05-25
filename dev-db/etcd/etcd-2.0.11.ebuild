@@ -11,7 +11,7 @@ SRC_URI="https://github.com/coreos/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="Apache-2.0"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS=""
 IUSE="+etcd +etcdctl etcd-migrate doc etcd-dump-logs"
 DEPEND="
 	>=dev-lang/go-1.2
