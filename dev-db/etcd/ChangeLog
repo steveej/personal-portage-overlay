@@ -1,4 +1,7 @@
   25 May 2015; Stefan Junker <code@stefanjunker.de> etcd-2.0.11.ebuild:
+  dev-db/etcd-2.0.11: use git tag and keyword for ~amd64 and ~x86
+
+  25 May 2015; Stefan Junker <code@stefanjunker.de> etcd-2.0.11.ebuild:
   dev-db/etcd-2.0.11: remove keywords due to broken upstream
 
 *etcd-2.0.11 (25 May 2015)

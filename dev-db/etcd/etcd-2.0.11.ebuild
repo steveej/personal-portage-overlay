@@ -3,15 +3,16 @@
 # $Header: $
 
 EAPI=5
-inherit systemd user
+inherit git-r3 systemd user
 
 DESCRIPTION="A highly-available key value store for shared configuration and service discovery"
 HOMEPAGE="https://github.com/coreos/etcd"
-SRC_URI="https://github.com/coreos/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
+EGIT_REPO_URI="https://github.com/coreos/etcd.git"
+EGIT_COMMIT="v${PV}"
 
 LICENSE="Apache-2.0"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~amd64 ~x86"
 IUSE="+etcd +etcdctl etcd-migrate doc etcd-dump-logs"
 DEPEND="
 	>=dev-lang/go-1.2
