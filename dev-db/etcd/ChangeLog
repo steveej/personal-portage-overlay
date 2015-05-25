@@ -1,3 +1,8 @@
+*etcd-2.0.11 (25 May 2015)
+
+  25 May 2015; Stefan Junker <code@stefanjunker.de> +etcd-2.0.11.ebuild:
+  dev-db/etcd: version bump
+
 *etcd-2.0.10-r1 (02 May 2015)
 
   02 May 2015; Stefan Junker <code@stefanjunker.de> +etcd-2.0.10-r1.ebuild:
