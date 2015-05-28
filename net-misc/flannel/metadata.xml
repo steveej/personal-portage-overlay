@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer>
+		<email>mail@stefanjunker.de</email>
+		<name>Stefan Junker</name>
+	</maintainer>	
+	<longdescription lang="en">
+		flannel (originally rudder) is an overlay network that gives a subnet to
+		each machine for use with Kubernetes.
+	</longdescription>
+	<use>
+	</use>
+</pkgmetadata>
