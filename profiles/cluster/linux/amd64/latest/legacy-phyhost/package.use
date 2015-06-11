@@ -1,2 +1,2 @@
 sys-kernel/gentoo-sources dracut experimental make savedconfig symlink minimal
-app-emulation/libvirt -policykit
+sys-auth/consolekit policykit
