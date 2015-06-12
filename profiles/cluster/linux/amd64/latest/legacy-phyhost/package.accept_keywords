@@ -10,4 +10,4 @@ net-misc/tinc ~amd64
 app-emulation/lxc ~amd64
 sys-process/criu ~amd64
 
-sys-cluster/ceph-0.8* ~amd64
+=sys-cluster/ceph-0.8* ~amd64
