@@ -10,4 +10,11 @@
 # has a conditional dependency on java (which it does,) then a JDK will be 
 # pulled in during *emerge system*!
 
-USE="ipv6 -X -cairo"
+USE="ipv6 -X -cairo mmx sse sse2 optimization tools security multiuser qemu parted virt-network lvm device-mapper tls python spice ntfs lzma xz clvm cman ccache fuse sasl rbd vim-syntax -gtk -gtk2 -gtk3 -X -qt4 -qt5 cgroup xattr cron anacron -ploop highlight pkcs11 heartbeat pacemaker seccomp lxc audit -vde xfs avx2 btrfs ssse3 sse3 avx usbredir"
+GRUB_PLATFORMS="pc multiboot"
+
+PYTHON_TARGETS="python2_7 python3_3"
+PYTHON_SINGLE_TARGET="python2_7"
+USE_PYTHON='2.7 3.3'
+
+RUBY_TARGETS="ruby19 ruby20"
