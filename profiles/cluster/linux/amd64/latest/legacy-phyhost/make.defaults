@@ -17,8 +17,8 @@ USE="ipv6 -X -cairo mmx sse sse2 optimization tools security multiuser qemu \
     audit -vde xfs avx2 btrfs ssse3 sse3 avx usbredir -audit"
 GRUB_PLATFORMS="pc multiboot"
 
-PYTHON_TARGETS="python2_7 python3_3"
+PYTHON_TARGETS="python2_7 python3_3 python3_4"
 PYTHON_SINGLE_TARGET="python2_7"
-USE_PYTHON='2.7 3.3'
+USE_PYTHON='2.7 3.3 3.4'
 
 RUBY_TARGETS="ruby19 ruby20"
