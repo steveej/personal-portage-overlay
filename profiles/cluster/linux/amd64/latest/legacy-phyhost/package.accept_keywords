@@ -11,3 +11,5 @@ app-emulation/lxc ~amd64
 sys-process/criu ~amd64
 
 =sys-cluster/ceph-0.8* ~amd64
+
+sys-devel/gcc:4.9 ~amd64
