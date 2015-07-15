@@ -1,3 +1,11 @@
+*rkt-0.5.5 (15 Jul 2015)
+*rkt-0.7.0 (15 Jul 2015)
+
+  15 Jul 2015; Stefan Junker <mail@stefanjunker.de> +rkt-0.5.5.ebuild,
+  +rkt-0.7.0.ebuild, metadata.xml, rkt-9999.ebuild:
+  app-emulation/rkt: version bumps and refactoring  Upstream rkt has switched
+  from a custom buildsystem to autotools.
+
 *rkt-0.5.6 (30 May 2015)
 
   30 May 2015; Stefan Junker <code@stefanjunker.de> +rkt-0.5.6.ebuild,
