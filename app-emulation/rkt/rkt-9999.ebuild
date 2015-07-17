@@ -25,18 +25,22 @@ HOMEPAGE="https://github.com/coreos/rkt"
 
 LICENSE="Apache-2.0"
 SLOT="0"
-IUSE="doc examples rkt_stage1_coreos rkt_stage1_host +rkt_stage1_src +actool"
+IUSE="doc examples +rkt_stage1_coreos rkt_stage1_host rkt_stage1_src +actool"
 USE_REQUIRE="^^ ( rkt_stage1_coreos rkt_stage1_host rkt_stage1_src )"
 
 DEPEND=">=dev-lang/go-1.4.1
 	app-arch/cpio
 	sys-fs/squashfs-tools
 	dev-perl/Capture-Tiny
+	rkt_stage1_src? (
+		>=sys-apps/systemd-220
+		app-shells/bash
+	)"
+RDEPEND="!app-emulation/rocket
 	rkt_stage1_host? (
 		>=sys-apps/systemd-220
 		app-shells/bash
 	)"
-RDEPEND="!app-emulation/rocket"
 
 BUILDDIR="build-${P}"
 

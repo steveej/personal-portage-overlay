@@ -1,3 +1,9 @@
+*rkt-0.7.0-r1 (17 Jul 2015)
+
+  17 Jul 2015; Stefan Junker <mail@stefanjunker.de> +rkt-0.7.0-r1.ebuild,
+  -rkt-0.7.0.ebuild, rkt-9999.ebuild:
+  app/emulation-rkt: change dependencies and default stage1 flavor
+
 *rkt-0.5.5 (15 Jul 2015)
 *rkt-0.7.0 (15 Jul 2015)
 
