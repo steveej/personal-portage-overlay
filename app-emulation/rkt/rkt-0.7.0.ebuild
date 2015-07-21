@@ -7,17 +7,27 @@ EAPI=5
 AUTOTOOLS_AUTORECONF=yes
 AUTOTOOLS_IN_SOURCE_BUILD=yes
 
-inherit autotools-utils eutils flag-o-matic systemd toolchain-funcs
+inherit autotools-utils flag-o-matic systemd toolchain-funcs
+inherit git-r3
 
-KEYWORDS=""
+EGIT_REPO_URI="https://github.com/coreos/rkt.git"
 
-if [[ "${PV}" == 9999 ]]; then
-	inherit git-r3
-	EGIT_REPO_URI="https://github.com/coreos/rkt.git"
+
+
+if [[ "${PV}" == "9999" ]]; then
+	KEYWORDS="~amd64"
+	PXE_VERSION="738.1.0"
 	EGIT_BRANCH="master"
-else
-	SRC_URI="https://github.com/coreos/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
+elif [[ "${PV}" == "0.7.0" ]]; then
+	KEYWORDS="amd64"
+	PXE_VERSION="709.0.0"
+	EGIT_COMMIT="9579f4bf57851a1a326c81ec2ab0ed2fdfab8d24"
 fi
+
+PXE_URI="http://alpha.release.core-os.net/amd64-usr/${PXE_VERSION}/coreos_production_pxe_image.cpio.gz"
+PXE_FILE="${PN}-pxe-${PXE_VERSION}.img"
+
+SRC_URI="rkt_stage1_coreos? ( $PXE_URI -> $PXE_FILE )"
 
 DESCRIPTION="A CLI for running app containers, and an implementation of the App
 Container Spec."
@@ -57,6 +67,8 @@ src_configure() {
 	fi
 	if use rkt_stage1_coreos; then
 		myeconfargs+=( --with-stage1="coreos" )
+		mkdir -p "${BUILDDIR}/tmp/usr_from_coreos/" || die
+		cp "${DISTDIR}/${PXE_FILE}" "${BUILDDIR}/tmp/usr_from_coreos/pxe.img" || die
 	fi
 
 	# Go's 6l linker does not support PIE, disable so cgo binaries
