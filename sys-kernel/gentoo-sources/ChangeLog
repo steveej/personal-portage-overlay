@@ -1,3 +1,9 @@
+*gentoo-sources-4.1.2 (22 Jul 2015)
+
+  22 Jul 2015; Stefan Junker <mail@stefanjunker.de>
+  +gentoo-sources-4.1.2.ebuild, metadata.xml:
+  sys-kernel/gentoo-sources: version bump to 4.1.2
+
 *gentoo-sources-4.0.5 (11 Jun 2015)
 
   11 Jun 2015; Stefan Junker <mail@stefanjunker.de>

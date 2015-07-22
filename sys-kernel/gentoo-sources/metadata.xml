@@ -8,6 +8,7 @@
   <flag name='genkernel'>Use genkernel(-next) to create the initrmfs</flag>
   <flag name='dracut'>Use dracut to create the initrmfs</flag>
   <flag name='savedconfig'>Make use of saved kernel.conf and genkernel.conf or dracut.conf</flag>
+  <flag name='kdbus'>Apply the kdbus patch. This also requires the "experimental" use flag.</flag>
 </use>
 <upstream>
   <remote-id type="cpe">cpe:/o:linux:linux_kernel</remote-id>
