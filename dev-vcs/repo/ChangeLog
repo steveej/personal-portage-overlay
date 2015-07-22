@@ -1,0 +1,5 @@
+*repo-1.21 (22 Jul 2015)
+
+  22 Jul 2015; Stefan Junker <mail@stefanjunker.de> +metadata.xml,
+  +repo-1.21.ebuild:
+  dev-vcs/repo: initial ebuild
