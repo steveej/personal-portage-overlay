@@ -15,11 +15,11 @@ EGIT_REPO_URI="https://github.com/coreos/rkt.git"
 
 
 if [[ "${PV}" == "9999" ]]; then
-	KEYWORDS="~amd64"
+	KEYWORDS=""
 	PXE_VERSION="738.1.0"
 	EGIT_BRANCH="master"
 elif [[ "${PV}" == "0.7.0" ]]; then
-	KEYWORDS="amd64"
+	KEYWORDS="~amd64"
 	PXE_VERSION="709.0.0"
 	EGIT_COMMIT="9579f4bf57851a1a326c81ec2ab0ed2fdfab8d24"
 fi
