@@ -2,6 +2,7 @@ app-admin
 app-crypt
 dev-db
 dev-python
+dev-vcs
 app-emulation
 app-misc
 app-paludis
