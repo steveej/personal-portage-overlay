@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  15 Aug 2015; Stefan Junker <mail@stefanjunker.de> -etcd-ca-0_p20150409.ebuild,
+  -etcd-ca-0_p20150423.ebuild:
+  app-crypt/etcd-ca: remove in-tree ebuilds from overlay
+
 *etcd-ca-0_p20150423 (15 Aug 2015)
 
   15 Aug 2015; Stefan Junker <mail@stefanjunker.de> +etcd-ca-0_p20150423.ebuild:
