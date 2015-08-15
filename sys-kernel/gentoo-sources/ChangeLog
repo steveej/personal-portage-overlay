@@ -1,3 +1,9 @@
+*gentoo-sources-4.1.5 (15 Aug 2015)
+
+  15 Aug 2015; Stefan Junker <mail@stefanjunker.de>
+  +gentoo-sources-4.1.5.ebuild, -gentoo-sources-4.1.2.ebuild:
+  sys-kernel/gentoo-sources: version bump to 4.1.5
+
 *gentoo-sources-4.1.2 (22 Jul 2015)
 
   22 Jul 2015; Stefan Junker <mail@stefanjunker.de>

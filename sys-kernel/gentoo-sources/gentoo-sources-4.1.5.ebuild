@@ -5,8 +5,8 @@
 EAPI="5"
 ETYPE="sources"
 K_WANT_GENPATCHES="base extras experimental"
-K_GENPATCHES_VER="6"
-K_DEBLOB_AVAILABLE="1"
+K_GENPATCHES_VER="9"
+K_DEBLOB_AVAILABLE="0"
 K_KDBUS_AVAILABLE="1"
 inherit kernel-builder
 detect_version
