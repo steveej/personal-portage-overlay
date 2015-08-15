@@ -1,3 +1,8 @@
+*etcd-2.1.1 (15 Aug 2015)
+
+  15 Aug 2015; Stefan Junker <mail@stefanjunker.de> +etcd-2.1.1.ebuild:
+  dev-db/etcd: version bump to 2.1.1
+
   25 May 2015; Stefan Junker <code@stefanjunker.de> etcd-2.0.11.ebuild:
   dev-db/etcd-2.0.11: use git tag and keyword for ~amd64 and ~x86
 
