@@ -1,3 +1,7 @@
+  15 Aug 2015; Stefan Junker <mail@stefanjunker.de> -etcd-2.0.10-r1.ebuild,
+  -etcd-2.0.9.ebuild:
+  dev-db/etcd: remove old versions
+
 *etcd-2.1.1 (15 Aug 2015)
 
   15 Aug 2015; Stefan Junker <mail@stefanjunker.de> +etcd-2.1.1.ebuild:
