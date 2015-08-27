@@ -1,3 +1,13 @@
+  27 Aug 2015; Stefan Junker <mail@stefanjunker.de> -files/rkt-metadata.service,
+  -files/rkt-metadata.socket, rkt-0.8.0.ebuild, rkt-9999.ebuild:
+  app-emulation/rkt: release 0.8 and live ebuild update
+
+*rkt-0.8.0 (27 Aug 2015)
+
+  27 Aug 2015; Stefan Junker <mail@stefanjunker.de> +rkt-0.8.0.ebuild,
+  -rkt-0.5.6.ebuild, -rkt-0.7.0.ebuild, rkt-9999.ebuild:
+  app-emulation/rkt: bump version to 0.8 and clean old ebuilds
+
   21 Jul 2015; Stefan Junker <mail@stefanjunker.de> rkt-9999.ebuild:
   >=app-emulation/rkt-0.7: download coreos img with portage
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Id$
 
 EAPI=5
 
@@ -12,17 +12,9 @@ inherit git-r3
 
 EGIT_REPO_URI="https://github.com/coreos/rkt.git"
 
-
-
-if [[ "${PV}" == "9999" ]]; then
-	KEYWORDS=""
-	PXE_VERSION="738.1.0"
-	EGIT_BRANCH="master"
-elif [[ "${PV}" == "0.7.0" ]]; then
-	KEYWORDS="~amd64"
-	PXE_VERSION="709.0.0"
-	EGIT_COMMIT="9579f4bf57851a1a326c81ec2ab0ed2fdfab8d24"
-fi
+KEYWORDS=""
+PXE_VERSION="738.1.0"
+EGIT_BRANCH="master"
 
 PXE_URI="http://alpha.release.core-os.net/amd64-usr/${PXE_VERSION}/coreos_production_pxe_image.cpio.gz"
 PXE_FILE="${PN}-pxe-${PXE_VERSION}.img"
@@ -35,7 +27,7 @@ HOMEPAGE="https://github.com/coreos/rkt"
 
 LICENSE="Apache-2.0"
 SLOT="0"
-IUSE="doc examples +rkt_stage1_coreos rkt_stage1_host rkt_stage1_src +actool"
+IUSE="doc examples +rkt_stage1_coreos rkt_stage1_host rkt_stage1_src +actool systemd"
 REQUIRED_USE="^^ ( rkt_stage1_coreos rkt_stage1_host rkt_stage1_src )"
 
 DEPEND=">=dev-lang/go-1.4.1
@@ -43,13 +35,13 @@ DEPEND=">=dev-lang/go-1.4.1
 	sys-fs/squashfs-tools
 	dev-perl/Capture-Tiny
 	rkt_stage1_src? (
-		>=sys-apps/systemd-220
-		app-shells/bash
+		>=sys-apps/systemd-222
+		app-shells/bash:0
 	)"
 RDEPEND="!app-emulation/rocket
 	rkt_stage1_host? (
-		>=sys-apps/systemd-220
-		app-shells/bash
+		>=sys-apps/systemd-222
+		app-shells/bash:0
 	)"
 
 BUILDDIR="build-${P}"
@@ -61,11 +53,9 @@ src_configure() {
 
 	if use rkt_stage1_host; then
 		myeconfargs+=( --with-stage1="host" )
-	fi
-	if use rkt_stage1_src; then
+	elif use rkt_stage1_src; then
 		myeconfargs+=( --with-stage1="src" )
-	fi
-	if use rkt_stage1_coreos; then
+	elif use rkt_stage1_coreos; then
 		myeconfargs+=( --with-stage1="coreos" )
 		mkdir -p "${BUILDDIR}/tmp/usr_from_coreos/" || die
 		cp "${DISTDIR}/${PXE_FILE}" "${BUILDDIR}/tmp/usr_from_coreos/pxe.img" || die
