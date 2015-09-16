@@ -11,9 +11,10 @@ inherit autotools-utils flag-o-matic systemd toolchain-funcs
 
 KEYWORDS="~amd64"
 
-PXE_VERSION="738.1.0"
+PXE_VERSION="794.1.0"
 PXE_URI="http://alpha.release.core-os.net/amd64-usr/${PXE_VERSION}/coreos_production_pxe_image.cpio.gz"
 PXE_FILE="${PN}-pxe-${PXE_VERSION}.img"
+PXE_SYSTEMD_VERSION="222"
 
 SRC_URI="https://github.com/coreos/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz
 rkt_stage1_coreos? ( $PXE_URI -> $PXE_FILE )"
@@ -50,7 +51,6 @@ src_configure() {
 		myeconfargs+=( --with-stage1="coreos" )
 		myeconfargs+=( --with-coreos-local-pxe-image-path="${DISTDIR}/${PXE_FILE}" )
 		myeconfargs+=( --with-coreos-local-pxe-image-systemd-version=v"${PXE_SYSTEMD_VERSION}" )
-		mkdir -p "${BUILDDIR}/tmp/usr_from_coreos/" || die
 	fi
 
 	# Go's 6l linker does not support PIE, disable so cgo binaries

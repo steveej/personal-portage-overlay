@@ -13,11 +13,12 @@ inherit git-r3
 EGIT_REPO_URI="https://github.com/coreos/rkt.git"
 
 KEYWORDS=""
-PXE_VERSION="738.1.0"
 EGIT_BRANCH="master"
 
+PXE_VERSION="794.1.0"
 PXE_URI="http://alpha.release.core-os.net/amd64-usr/${PXE_VERSION}/coreos_production_pxe_image.cpio.gz"
 PXE_FILE="${PN}-pxe-${PXE_VERSION}.img"
+PXE_SYSTEMD_VERSION="222"
 
 SRC_URI="rkt_stage1_coreos? ( $PXE_URI -> $PXE_FILE )"
 
@@ -57,8 +58,8 @@ src_configure() {
 		myeconfargs+=( --with-stage1="src" )
 	elif use rkt_stage1_coreos; then
 		myeconfargs+=( --with-stage1="coreos" )
-		mkdir -p "${BUILDDIR}/tmp/usr_from_coreos/" || die
-		cp "${DISTDIR}/${PXE_FILE}" "${BUILDDIR}/tmp/usr_from_coreos/pxe.img" || die
+		myeconfargs+=( --with-coreos-local-pxe-image-path="${DISTDIR}/${PXE_FILE}" )
+		myeconfargs+=( --with-coreos-local-pxe-image-systemd-version=v"${PXE_SYSTEMD_VERSION}" )
 	fi
 
 	# Go's 6l linker does not support PIE, disable so cgo binaries
