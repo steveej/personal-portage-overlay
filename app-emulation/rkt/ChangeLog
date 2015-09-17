@@ -1,3 +1,7 @@
+  17 Sep 2015; Stefan Junker <mail@stefanjunker.de> rkt-0.8.1.ebuild,
+  rkt-9999.ebuild:
+  app-emulation/rkt: remove unused systemd IUSE
+
 *rkt-0.8.1 (16 Sep 2015)
 
   16 Sep 2015; Stefan Junker <mail@stefanjunker.de> +rkt-0.8.1.ebuild,

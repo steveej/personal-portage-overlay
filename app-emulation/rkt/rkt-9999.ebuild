@@ -16,9 +16,9 @@ KEYWORDS=""
 EGIT_BRANCH="master"
 
 PXE_VERSION="794.1.0"
+PXE_SYSTEMD_VERSION="222"
 PXE_URI="http://alpha.release.core-os.net/amd64-usr/${PXE_VERSION}/coreos_production_pxe_image.cpio.gz"
 PXE_FILE="${PN}-pxe-${PXE_VERSION}.img"
-PXE_SYSTEMD_VERSION="222"
 
 SRC_URI="rkt_stage1_coreos? ( $PXE_URI -> $PXE_FILE )"
 
@@ -28,7 +28,7 @@ HOMEPAGE="https://github.com/coreos/rkt"
 
 LICENSE="Apache-2.0"
 SLOT="0"
-IUSE="doc examples +rkt_stage1_coreos rkt_stage1_host rkt_stage1_src +actool systemd"
+IUSE="doc examples +rkt_stage1_coreos rkt_stage1_host rkt_stage1_src +actool"
 REQUIRED_USE="^^ ( rkt_stage1_coreos rkt_stage1_host rkt_stage1_src )"
 
 DEPEND=">=dev-lang/go-1.4.1
