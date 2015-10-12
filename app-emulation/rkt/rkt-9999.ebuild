@@ -40,6 +40,7 @@ DEPEND=">=dev-lang/go-1.4.1
 		app-shells/bash:0
 	)"
 RDEPEND="!app-emulation/rocket
+	actool? ( !app-emulation/actool )
 	rkt_stage1_host? (
 		>=sys-apps/systemd-222
 		app-shells/bash:0

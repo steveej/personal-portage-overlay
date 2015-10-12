@@ -32,6 +32,7 @@ IUSE="doc examples +rkt_stage1_coreos rkt_stage1_host rkt_stage1_src +actool"
 REQUIRED_USE="^^ ( rkt_stage1_coreos rkt_stage1_host rkt_stage1_src )"
 
 DEPEND=">=dev-lang/go-1.4.1
+	actool? ( !app-emulation/actool )
 	app-arch/cpio
 	sys-fs/squashfs-tools
 	dev-perl/Capture-Tiny
